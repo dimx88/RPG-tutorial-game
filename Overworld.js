@@ -81,18 +81,7 @@ class Overworld {
         this.startGameLoop();
 
         this.map.startCutscene([
-            // { who: 'hero', type: 'walk', direction: 'down' },
-            // { who: 'hero', type: 'walk', direction: 'down' },
-            // { who: 'hero', type: 'stand', direction: 'up', time: 1000 },
-            // { who: 'hero', type: 'walk', direction: 'down' },
-            // {type: 'textMessage', text:'hello world'},
-            // { who: 'npcA', type: 'walk', direction: 'left' },
-            // { who: 'npcA', type: 'stand', direction: 'up', time: 1000 },
-            // { who: 'npcA', type: 'stand', direction: 'left', time: 300 },
-            // { who: 'npcA', type: 'walk', direction: 'left' },
-            // { who: 'npcA', type: 'stand', direction: 'down', time: 400 },
-            // {type: 'textMessage', text:'whatever'},
-            // { who: 'hero', type: 'stand', direction: 'up' },
+            { type: 'battle' }
             // {type: 'textMessage', text:`I'm just testing out the typewriter effect. Can you dig that?`},
         ]);
     }
