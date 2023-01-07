@@ -6,6 +6,11 @@ class Combatant {
         this.battle = battle;
     }
 
+    get hpPercent() {
+        const percent = this.hp / this.maxHp * 100;
+        return percent < 0 ? 0 : percent;
+    }
+
     createElement() {
         this.hudElement = document.createElement('div');
         this.hudElement.classList.add('Combatant');
@@ -28,10 +33,24 @@ class Combatant {
         </svg>
         <p class="Combatant_status"></p>
       `);
+
+      this.hpFills = this.hudElement.querySelectorAll('.Combatant_life-container > rect');
+    }
+
+    update(changes={}) {
+        // Update any incoming change
+        Object.keys(changes).forEach(key => {
+            this[key] = changes[key]
+        });
+
+        this.hpFills.forEach(rect => rect.style.width = `${this.hpPercent}%`);
+        this.hudElement.querySelector('.Combatant_level').innerText = this.level;
     }
 
     init(container) {
         this.createElement();
         container.appendChild(this.hudElement);
+
+        this.update();
     }
 }
