@@ -2,14 +2,20 @@
 <html lang="en">
 
 <head>
-    <!-- <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- Liveserver missing favicon fix -->
     <link rel="icon" href="data:;base64,=">
     <link rel="shortcut icon" href="">
+
     <link rel="stylesheet" href="/styles/global.css" type="text/css">
     <link rel="stylesheet" href="/styles/SceneTransition.css" type="text/css">
     <link rel="stylesheet" href="/styles/TextMessage.css" type="text/css">
+
+    <!-- Battle CSS -->
+    <link rel="stylesheet" href="/styles/Battle.css" type="text/css">
+    <link rel="stylesheet" href="/styles/Combatant.css" type="text/css">
+    <link rel="stylesheet" href="/styles/SubmissionMenu.css" type="text/css">
+    <link rel="stylesheet" href="/styles/Team.css" type="text/css">
+
     <title>RPG tutorial project</title>
 </head>
 
@@ -18,6 +24,7 @@
         <canvas class="game-canvas" width="352" height="198"></canvas>
     </div>
 
+    <!-- Scripts -->
     <script src="/utils.js"></script>
     <script src="/DirectionInput.js"></script>
     <script src="/KeyPressListener.js"></script>
@@ -31,6 +38,12 @@
     <script src="/Overworld.js"></script>
     <script src="/SceneTransition.js"></script>
     <script src="/init.js"></script>
+
+    <!-- Battle -->
+    <script src="Battle.js"></script>
+    <script src="Combatant.js"></script>
+    <script src="SubmissionMenu.js"></script>
+    <script src="Team.js"></script>
 </body>
 
 </html>
