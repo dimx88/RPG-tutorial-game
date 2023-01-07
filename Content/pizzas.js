@@ -20,7 +20,7 @@ window.Pizzas = {
         icon: '/images/icons/veggie.png'
     },
     'f001': {
-        name: 'Portabello Exporess',
+        name: 'Portabello Express',
         type: PizzaTypes.fungi,
         src: '/images/characters/pizzas/f001.png',
         icon: '/images/icons/fungi.png'
