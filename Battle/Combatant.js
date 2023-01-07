@@ -42,6 +42,13 @@ class Combatant {
         <p class="Combatant_status"></p>
       `);
 
+      this.pizzaElement = document.createElement('img');
+      this.pizzaElement.classList.add('Pizza');
+      this.pizzaElement.setAttribute('src', this.src);
+      this.pizzaElement.setAttribute('a', this.name);
+      this.pizzaElement.setAttribute('data-team', this.team);
+
+
       this.hpFills = this.hudElement.querySelectorAll('.Combatant_life-container > rect');
       this.xpFills = this.hudElement.querySelectorAll('.Combatant_xp-container > rect');
     }
@@ -63,6 +70,7 @@ class Combatant {
     init(container) {
         this.createElement();
         container.appendChild(this.hudElement);
+        container.appendChild(this.pizzaElement);
 
         this.update();
     }
