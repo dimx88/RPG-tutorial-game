@@ -5,15 +5,40 @@ class BattleEvent {
     }
 
     textMessage(resolve) {
-        // console.log('a battle message');
+        const text = this.event.text
+            .replace('{CASTER}', this.event.caster?.name)
+            .replace('{TARGET}', this.event.target?.name)
+            .replace('{ACTION}', this.event.action?.name);
+
         const message = new TextMessage({
-            text: this.event.text,
+            text,
             onComplete: () => {
                 resolve();
             }
         });
 
         message.init(this.battle.element);
+    }
+
+    async stateChange(resolve) {
+        const { caster, target, damage } = this.event;
+        if (damage) {
+            // Reduce HP of target
+            target.update({
+                hp: target.hp - damage
+            });
+
+            // Start blinking
+            target.pizzaElement.classList.add('battle-damage-blink');
+        }
+
+        // Wait a bit
+        await utils.wait(600);
+
+        // Stop blinking
+        target.pizzaElement.classList.remove('battle-damage-blink');
+
+        resolve();
     }
 
     submissionMenu(resolve) {

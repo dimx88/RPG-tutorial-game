@@ -30,10 +30,22 @@
 }
 
 .Battle_hero img {
-    transform: translateY(-64px); /* Nudge hero spritesheet */
+    transform: translateY(-64px);
+    /* Nudge hero spritesheet */
 }
 
 .Battle_enemy {
     top: 42px;
     right: -1px;
+}
+
+/* Animations */
+@keyframes battle-damage-blink {
+    to {
+        visibility: hidden;
+    }
+}
+
+.battle-damage-blink {
+    animation: battle-damage-blink 0.3s steps(2, start) infinite;
 }

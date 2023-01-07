@@ -1,4 +1,5 @@
 const utils = {
+    
     withGrid(n) {
         return n * 16;
     },
@@ -25,6 +26,13 @@ const utils = {
         if (direction === 'right') { return 'left' }
         if (direction === 'down') { return 'up' }
         return 'down';
+    },
+    wait(ms) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve();
+            }, ms)
+        });
     },
     emitEvent(name, detail) {
         const event = new CustomEvent(name, { detail });
