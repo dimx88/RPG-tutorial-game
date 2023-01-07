@@ -15,6 +15,10 @@ class Combatant {
         return this.xp / this.maxXp * 100;
     }
 
+    get isActive() {
+        return this.battle.activeCombatants[this.team] === this.id;
+    }
+
     createElement() {
         this.hudElement = document.createElement('div');
         this.hudElement.classList.add('Combatant');
@@ -47,6 +51,8 @@ class Combatant {
         Object.keys(changes).forEach(key => {
             this[key] = changes[key]
         });
+
+        this.hudElement.setAttribute('data-active', this.isActive);
 
         this.hpFills.forEach(rect => rect.style.width = `${this.hpPercent}%`);
         this.xpFills.forEach(rect => rect.style.width = `${this.xpPercent}%`);

@@ -30,6 +30,11 @@ class Battle {
                 level: 1,
             }, this),
         };
+
+        this.activeCombatants = {
+            player: 'player1',
+            enemy: 'enemy1'
+        };
     }
 
     createElement() {
