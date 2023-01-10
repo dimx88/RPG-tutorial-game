@@ -1,17 +1,20 @@
 class TurnCycle {
     constructor({ battle, onNewEvent }) {
+        console.log('turncycle');
+        console.log(this);
         this.battle = battle;
         this.onNewEvent = onNewEvent;
         this.currentTeam = 'player'; // Or 'enemy'
     }
 
     async turn() {
+        console.log('current turn', this.currentTeam);
         // Get a reference to the caster
         const casterId = this.battle.activeCombatants[this.currentTeam];
         const caster = this.battle.combatants[casterId];
 
         // Get a reference to the enemy
-        const enemyId = this.battle.activeCombatants[this.currentTeam];
+        const enemyId = this.battle.activeCombatants[this.currentTeam === 'player' ? 'enemy' : 'player'];
         const enemy = this.battle.combatants[enemyId];
 
         const submission = await this.onNewEvent({
@@ -31,6 +34,21 @@ class TurnCycle {
             }
             await this.onNewEvent(event);
         }
+
+        // Check for post-turn events
+        // (Do things after original turn submission)
+        const postEvents = caster.getPostEvents();
+        for (let i = 0; i < postEvents.length; i++) {
+            const event = {
+                ...postEvents[i],
+                submission,
+                action: submission.action,
+                caster,
+                target: submission.target
+            };
+            await this.onNewEvent(event);
+        }
+
 
         // Toggle current team between ( player | enemy )
         this.currentTeam = this.currentTeam === 'player' ? 'enemy' : 'player';

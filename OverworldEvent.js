@@ -78,6 +78,7 @@ class OverworldEvent {
             }
         });
         battle.init(document.querySelector('.game-container'));
+        
     }
 
     init() {

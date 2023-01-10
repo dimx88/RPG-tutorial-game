@@ -69,6 +69,28 @@ class Combatant {
 
         // Update level on screen
         this.hudElement.querySelector('.Combatant_level').innerText = this.level;
+
+        // Update status on screen
+        const statusElement = this.hudElement.querySelector('.Combatant_status');
+        if (this.status) {
+            statusElement.innerText = this.status.type;
+            statusElement.style.display = 'block';
+            // If status has passed, clear the status display
+        } else {
+            statusElement.innerText = '';
+            statusElement.style.display = 'none';
+        }
+    }
+
+    getPostEvents() {
+        if (this.status?.type === 'saucy') {
+            return [
+                {type: 'textMessage', text: `Feelin' saucy!`},
+                {type: 'stateChange', recover: 5, onCaster: true}
+            ];
+        }
+
+        return [];
     }
 
     init(container) {

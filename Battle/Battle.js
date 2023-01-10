@@ -9,7 +9,10 @@ class Battle {
                 xp: 75,
                 maxXp: 100,
                 level: 1,
-                status: null
+                status: {
+                    type: 'saucy',
+                    expiresIn: 3
+                }
             }, this),
             'enemy1': new Combatant({
                 ...Pizzas.v001,
@@ -68,7 +71,7 @@ class Battle {
                 })
             }
         })
-        
+
         this.turnCycle.init();
 
 
