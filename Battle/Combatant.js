@@ -42,18 +42,18 @@ class Combatant {
         <p class="Combatant_status"></p>
       `);
 
-      this.pizzaElement = document.createElement('img');
-      this.pizzaElement.classList.add('Pizza');
-      this.pizzaElement.setAttribute('src', this.src);
-      this.pizzaElement.setAttribute('a', this.name);
-      this.pizzaElement.setAttribute('data-team', this.team);
+        this.pizzaElement = document.createElement('img');
+        this.pizzaElement.classList.add('Pizza');
+        this.pizzaElement.setAttribute('src', this.src);
+        this.pizzaElement.setAttribute('a', this.name);
+        this.pizzaElement.setAttribute('data-team', this.team);
 
 
-      this.hpFills = this.hudElement.querySelectorAll('.Combatant_life-container > rect');
-      this.xpFills = this.hudElement.querySelectorAll('.Combatant_xp-container > rect');
+        this.hpFills = this.hudElement.querySelectorAll('.Combatant_life-container > rect');
+        this.xpFills = this.hudElement.querySelectorAll('.Combatant_xp-container > rect');
     }
 
-    update(changes={}) {
+    update(changes = {}) {
         // Update any incoming change
         Object.keys(changes).forEach(key => {
             this[key] = changes[key]
@@ -85,12 +85,27 @@ class Combatant {
     getPostEvents() {
         if (this.status?.type === 'saucy') {
             return [
-                {type: 'textMessage', text: `Feelin' saucy!`},
-                {type: 'stateChange', recover: 5, onCaster: true}
+                { type: 'textMessage', text: `Feelin' saucy!` },
+                { type: 'stateChange', recover: 5, onCaster: true }
             ];
         }
 
         return [];
+    }
+
+    decrementStatus() {
+        if (this.status?.expiresIn > 0) {
+            this.status.expiresIn -= 1;
+            if (this.status.expiresIn === 0) {
+                this.update({ status: null });
+                return {
+                    type: 'textMessage',
+                    text: 'Status expired!'
+                };
+            }
+        }
+
+        return null;
     }
 
     init(container) {

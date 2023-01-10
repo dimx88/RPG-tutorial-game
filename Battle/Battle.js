@@ -11,7 +11,7 @@ class Battle {
                 level: 1,
                 status: {
                     type: 'saucy',
-                    expiresIn: 3
+                    expiresIn: 1
                 }
             }, this),
             'enemy1': new Combatant({

@@ -1,7 +1,5 @@
 class TurnCycle {
     constructor({ battle, onNewEvent }) {
-        console.log('turncycle');
-        console.log(this);
         this.battle = battle;
         this.onNewEvent = onNewEvent;
         this.currentTeam = 'player'; // Or 'enemy'
@@ -47,6 +45,12 @@ class TurnCycle {
                 target: submission.target
             };
             await this.onNewEvent(event);
+        }
+
+        // Check for status expire
+        const expiredEvent = caster.decrementStatus();
+        if (expiredEvent) {
+            await this.onNewEvent(expiredEvent);
         }
 
 
