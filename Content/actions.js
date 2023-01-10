@@ -9,9 +9,10 @@ window.Actions = {
     },
     saucyStatus: {
         name: 'Tomato Squeeze',
+        targetType: 'friendly',
         success: [
             { type: 'textMessage', text: '{CASTER} uses {ACTION}!' },
-            { type: 'stateChange', damage: 10 }
+            { type: 'stateChange', status: {type: 'saucy', expiresIn: 3} }
         ]
     }
 };
