@@ -1,5 +1,5 @@
 const utils = {
-    
+
     withGrid(n) {
         return n * 16;
     },
@@ -33,6 +33,9 @@ const utils = {
                 resolve();
             }, ms)
         });
+    },
+    randomFromArray(array) {
+        return array[Math.floor(Math.random() * array.length)];
     },
     emitEvent(name, detail) {
         const event = new CustomEvent(name, { detail });
