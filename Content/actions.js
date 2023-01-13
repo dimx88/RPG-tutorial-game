@@ -35,9 +35,19 @@ window.Actions = {
         description: 'Makes life better',
         targetType: 'friendly',
         success: [
-            { type: 'textMessage', text: '{CASTER} uses {ITEM}!' },
+            { type: 'textMessage', text: '{CASTER} uses {ACTION}!' },
             { type: 'stateChange', status: null },
             { type: 'textMessage', text: 'Feels good, man' },
+        ]
+    },
+    item_recoverHp: {
+        name: 'Energy Drink',
+        description: 'Restores some health',
+        targetType: 'friendly',
+        success: [
+            { type: 'textMessage', text: '{CASTER} uses {ACTION}!' },
+            { type: 'stateChange', recover: 10 },
+            { type: 'textMessage', text: 'Ahh, taste of life' },
         ]
     }
 };
