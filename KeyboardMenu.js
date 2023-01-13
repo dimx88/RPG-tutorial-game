@@ -10,17 +10,33 @@ class KeyboardMenu {
         this.options = options;
         this.element.innerHTML = this.options.map((option, index) => {
             const disabledAttr = option.disabled ? 'disabled' : '';
+            const autoFocusAttr = index === 0 ? 'autofocus' : '';
+            
             return (`
             <div class="option">
-                <button ${disabledAttr} data-button="${index}" data-description="${option.description}">
+                <button ${disabledAttr} ${autoFocusAttr} data-button="${index}" data-description="${option.description}">
                  ${option.label}
                 </button>
                 <span class="right">${option.right ? option.right() : ''}</span>
             </div>
             `);
         }).join('');
+
+        this.element.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                const chosenOption = this.options[Number(button.dataset.button)];
+                chosenOption.handler();
+            });
+            button.addEventListener('mouseenter', () => {
+                button.focus();
+            });
+            button.addEventListener('focus', () => {
+                this.prevFocus = button;
+                this.descriptionElementText.innerText = button.dataset.description;
+            });
+        });
     }
-    
+
 
     createElement() {
         this.element = document.createElement('div');
