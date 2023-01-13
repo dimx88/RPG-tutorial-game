@@ -14,7 +14,7 @@ class KeyboardMenu {
 
             return (`
             <div class="option">
-                <button ${disabledAttr} ${autoFocusAttr} data-button="${index}" data-description="${option.description}">
+                <button ${disabledAttr} data-button="${index}" data-description="${option.description}">
                  ${option.label}
                 </button>
                 <span class="right">${option.right ? option.right() : ''}</span>
@@ -35,6 +35,11 @@ class KeyboardMenu {
                 this.descriptionElementText.innerText = button.dataset.description;
             });
         });
+
+        // Set focus on the first non-disabled menu item
+        setTimeout(() => {
+            this.element.querySelector('button[data-button]:not([disabled])').focus();
+        }, 10);
     }
 
 
