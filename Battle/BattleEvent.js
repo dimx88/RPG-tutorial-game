@@ -70,6 +70,7 @@ class BattleEvent {
         const menu = new SubmissionMenu({
             caster: this.event.caster,
             enemy: this.event.enemy,
+            items: this.battle.items,
             onComplete: submission => {
                 // Submission { what move to use, who to use it on }
                 resolve(submission);
@@ -84,7 +85,6 @@ class BattleEvent {
     }
 
     init(resolve) {
-        console.log(this.event);
         this[this.event.type](resolve);
     }
 }

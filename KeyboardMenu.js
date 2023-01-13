@@ -14,7 +14,7 @@ class KeyboardMenu {
 
             return (`
             <div class="option">
-                <button ${disabledAttr} data-button="${index}" data-description="${option.description}">
+                <button ${disabledAttr} data-button="${index}" data-description="${option.description ? option.description : 'No description...'}">
                  ${option.label}
                 </button>
                 <span class="right">${option.right ? option.right() : ''}</span>
