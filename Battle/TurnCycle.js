@@ -6,7 +6,6 @@ class TurnCycle {
     }
 
     async turn() {
-        console.log('current turn', this.currentTeam);
         // Get a reference to the caster
         const casterId = this.battle.activeCombatants[this.currentTeam];
         const caster = this.battle.combatants[casterId];
@@ -60,10 +59,10 @@ class TurnCycle {
     }
 
     async init() {
-        await this.onNewEvent({
-            type: 'textMessage',
-            text: 'A new battle begins!'
-        });
+        // await this.onNewEvent({
+        //     type: 'textMessage',
+        //     text: 'A new battle begins!'
+        // });
 
         // Start the first turn
         this.turn();
